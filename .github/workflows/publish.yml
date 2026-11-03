@@ -32,5 +32,8 @@ jobs:
         run: test "v$(node -p 'require("./package.json").version')" = "$GITHUB_REF_NAME"
       - run: npm publish --provenance --access public
         env:
+          # The prepublishOnly guard (n8n-node prerelease) only lets a publish
+          # through when RELEASE_MODE is set; lint and test ran above.
+          RELEASE_MODE: 'true'
           # Not needed when the repo is an npm trusted publisher for this package.
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
