@@ -1,0 +1,36 @@
+# Publishes n8n-nodes-shortsintel to npm with provenance, which n8n verification
+# requires. Active once this directory is the root of the public
+# n8n-nodes-shortsintel repository; it does nothing inside the ShortsIntel monorepo.
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm test
+      - name: Tag matches package.json version
+        run: test "v$(node -p 'require("./package.json").version')" = "$GITHUB_REF_NAME"
+      - run: npm publish --provenance --access public
+        env:
+          # Not needed when the repo is an npm trusted publisher for this package.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

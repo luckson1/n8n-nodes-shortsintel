@@ -1,0 +1,5 @@
+# Standalone n8n community node package: its own pnpm root, outside the monorepo workspace.
+packages:
+  - "."
+nodeLinker: hoisted
+minimumReleaseAge: 1440

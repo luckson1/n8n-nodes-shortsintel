@@ -1,0 +1,63 @@
+{
+	"name": "n8n-nodes-shortsintel",
+	"version": "0.1.0",
+	"description": "n8n nodes for ShortsIntel: research niches, search and analyse short-form videos and Ads, and track creators, hashtags, sounds, keywords and advertisers.",
+	"license": "MIT",
+	"homepage": "https://www.shortsintel.com",
+	"keywords": [
+		"n8n-community-node-package",
+		"shortsintel",
+		"tiktok",
+		"instagram",
+		"youtube shorts",
+		"ad library",
+		"short-form video"
+	],
+	"author": {
+		"name": "ShortsIntel",
+		"email": "support@shortsintel.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/luckson1/n8n-nodes-shortsintel.git"
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"test": "n8n-node build && node --test test/*.test.js",
+		"generate": "cd ../.. && pnpm dlx tsx integrations/n8n/scripts/generate.mts",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/ShortsIntelApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/ShortsIntel/ShortsIntel.node.js",
+			"dist/nodes/ShortsIntelTrigger/ShortsIntelTrigger.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "0.55.4",
+		"eslint": "9.32.0",
+		"n8n-workflow": "2.16.0",
+		"prettier": "3.6.2",
+		"release-it": "^19.0.4",
+		"typescript": "5.9.2"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"node": "n8n-nodes-shortsintel.shortsIntelTrigger",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Marketing & Content"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://www.shortsintel.com/docs"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://www.shortsintel.com/docs"
+			}
+		]
+	}
+}
